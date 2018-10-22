@@ -8,6 +8,7 @@ urls = []
 # variables I care about
 varList = ["Also called",
            "Configuration",
+           "Production",
            # "Cylinder block alloy",
            "Piston stroke, mm (inch)",
            "Cylinder bore, mm (inch)",
@@ -56,6 +57,7 @@ def get_data():
 
 def print_data():
     with open("database.csv","w+") as db:
+        db.write("Engine Name; Configuration; Years; Stroke; Bore; Compression Ratio; Displacement; Horsepower; Torque; Redline")
 	    for i in database:
 		print "----engine----"
 		for j in varList:
@@ -63,12 +65,13 @@ def print_data():
 		#db.write("----engine----\r\n")
 		db.write(i["Also called"].encode('utf-8') +"; " +
 			i["Configuration"].encode('utf-8') +"; "+
+			i["Production"].encode('utf-8') +"; "+
 			i["Piston stroke, mm (inch)"].encode('utf-8')+"; " +
 			i["Cylinder bore, mm (inch)"].encode('utf-8')+"; " +
 			i["Compression ratio"].encode('utf-8') + "; " +
 			i["Displacement"].encode('utf-8') + "; "+
 			i["Power output"].encode('utf-8') + "; "+
-			i["Torque output"].encode('utf-8') + ", "+
+			i["Torque output"].encode('utf-8') + "; "+
 			i["Redline"].encode('utf-8') +
 			"\r\n")
 
