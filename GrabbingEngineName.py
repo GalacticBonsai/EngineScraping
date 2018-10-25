@@ -1,38 +1,31 @@
 # import libraries
-from urllib import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+import requests
 
 # urls to grab
 urls = []
 
 # variables I care about
-varList = ["Also called",
-           "Configuration",
-           "Production",
+varList = ["Also called","Configuration","Production",
            # "Cylinder block alloy",
-           "Piston stroke, mm (inch)",
-           "Cylinder bore, mm (inch)",
-           "Compression ratio",
-           "Displacement",
-           "Power output",
-           "Torque output",
-           "Redline"]
+           "Piston stroke, mm (inch)","Cylinder bore, mm (inch)",
+           "Compression ratio","Displacement",
+           "Power output","Torque output","Redline"]
 database = []
 
 
 def get_urls():
-    with open("siteURL") as URL:
-	for i in URL:
-		urls.append(i)
+    with open("siteURL.csv") as URL:
+        for i in URL:
+            urls.append(i)
     #print urls
 # wget
 
 
 def get_data():
     for url in urls:
-        uClient = uReq(url)
-        page_html = uClient.read()
-        uClient.close()
+        uClient = requests.get(url)
+        page_html = uClient.text
         # turn html into object
         page_soup = soup(page_html, 'html.parser')
 
@@ -40,7 +33,7 @@ def get_data():
 
         varDict = {}
         found = False
-	anyres = False
+        anyres = False
         for i in page_soup.stripped_strings:
             if found is True:
                 varDict[key] = i
@@ -48,32 +41,32 @@ def get_data():
             elif i in varList:
                 key = i
                 found = True
-		anyres = True
+                anyres = True
         if anyres is True:
-		print varDict
-		database.append(varDict)
-	
+                print(varDict)
+                database.append(varDict)
+
 
 
 def print_data():
     with open("database.csv","w+") as db:
         db.write("Engine Name; Configuration; Years; Stroke; Bore; Compression Ratio; Displacement; Horsepower; Torque; Redline")
-	    for i in database:
-		print "----engine----"
-		for j in varList:
-		    print j + " : " + i[j]
-		#db.write("----engine----\r\n")
-		db.write(i["Also called"].encode('utf-8') +"; " +
-			i["Configuration"].encode('utf-8') +"; "+
-			i["Production"].encode('utf-8') +"; "+
-			i["Piston stroke, mm (inch)"].encode('utf-8')+"; " +
-			i["Cylinder bore, mm (inch)"].encode('utf-8')+"; " +
-			i["Compression ratio"].encode('utf-8') + "; " +
-			i["Displacement"].encode('utf-8') + "; "+
-			i["Power output"].encode('utf-8') + "; "+
-			i["Torque output"].encode('utf-8') + "; "+
-			i["Redline"].encode('utf-8') +
-			"\r\n")
+        for i in database:
+            print("----engine----")
+            for j in varList:
+                print(j + " : " + i[j])
+	        #db.write("----engine----\r\n")
+                db.write(i["Also called"] +"; "+
+                        i["Configuration"]+"; "+
+                        i["Production"] +"; "+
+                        i["Piston stroke, mm (inch)"]+"; "+
+                        i["Cylinder bore, mm (inch)"]+"; "+
+                        i["Compression ratio"] + "; "+
+                        i["Displacement"] + "; "+
+                        i["Power output"] + "; "+
+                        i["Torque output"] + "; "+
+                        i["Redline"] +
+                        "\r\n")
 
 def main():
     get_urls()
@@ -81,5 +74,5 @@ def main():
     print_data()
 
 
-main()
+#main()
 
