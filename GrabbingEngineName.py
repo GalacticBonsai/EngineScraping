@@ -53,20 +53,18 @@ def print_data():
         db.write("Engine Name; Configuration; Years; Stroke; Bore; Compression Ratio; Displacement; Horsepower; Torque; Redline")
         for i in database:
             print("----engine----")
-            for j in varList:
-                print(j + " : " + i[j])
-	        #db.write("----engine----\r\n")
-                db.write(i["Also called"] +"; "+
-                        i["Configuration"]+"; "+
-                        i["Production"] +"; "+
-                        i["Piston stroke, mm (inch)"]+"; "+
-                        i["Cylinder bore, mm (inch)"]+"; "+
-                        i["Compression ratio"] + "; "+
-                        i["Displacement"] + "; "+
-                        i["Power output"] + "; "+
-                        i["Torque output"] + "; "+
-                        i["Redline"] +
-                        "\r\n")
+            #db.write("----engine----\r\n")
+            db.write(i["Also called"] +"; "+
+                    i["Configuration"]+"; "+
+                    i["Production"] +"; "+
+                    i["Piston stroke, mm (inch)"]+"; "+
+                    i["Cylinder bore, mm (inch)"]+"; "+
+                    i["Compression ratio"] + "; "+
+                    i["Displacement"] + "; "+
+                    i["Power output"] + "; "+
+                    i["Torque output"] + "; "+
+                    i["Redline"] +
+                    "\r\n")
 
 def main():
     get_urls()
