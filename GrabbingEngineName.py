@@ -26,7 +26,8 @@ def get_data():
     for url in urls:
         uClient = requests.get(url.rstrip())
         page_html = uClient.text
-        # turn html into object
+#        print(uClient)        
+# turn html into object
         page_soup = soup(page_html, 'html.parser')
 
         # print page_soup.prettify()
@@ -72,6 +73,6 @@ def main():
     print_data()
 
 
-if __name__ is "__main__":
+if __name__ == "__main__":
     main()
 
