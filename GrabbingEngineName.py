@@ -72,5 +72,6 @@ def main():
     print_data()
 
 
-#main()
+if __name__ is "__main__":
+    main()
 
