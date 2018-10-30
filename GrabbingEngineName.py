@@ -24,7 +24,7 @@ def get_urls():
 
 def get_data():
     for url in urls:
-        uClient = requests.get(url)
+        uClient = requests.get(url.rstrip())
         page_html = uClient.text
         # turn html into object
         page_soup = soup(page_html, 'html.parser')
