@@ -36,6 +36,7 @@ def get_data():
         found = False
         anyres = False
         for i in page_soup.stripped_strings:
+            #print(i)
             if found is True:
                 varDict[key] = i
                 found = False
@@ -51,26 +52,28 @@ def get_data():
 
 def print_data():
     with open("database.csv","w+") as db:
-        db.write("Engine Name; Configuration; Years; Stroke; Bore; Compression Ratio; Displacement; Horsepower; Torque; Redline")
+        db.write("Engine Name; Configuration; Years; Stroke; Bore; Compression Ratio; Displacement; Horsepower; Torque; Redline\n")
         for i in database:
-            print("----engine----")
+            #print("----engine----")
             #db.write("----engine----\r\n")
-            db.write(i["Also called"] +"; "+
-                    i["Configuration"]+"; "+
-                    i["Production"] +"; "+
-                    i["Piston stroke, mm (inch)"]+"; "+
-                    i["Cylinder bore, mm (inch)"]+"; "+
-                    i["Compression ratio"] + "; "+
-                    i["Displacement"] + "; "+
-                    i["Power output"] + "; "+
-                    i["Torque output"] + "; "+
-                    i["Redline"] +
+            #db.write(";".join(i.values()).encode('utf-8').strip())
+            #print(";".join(i.values()).encode('utf-8').strip())
+            db.write(i["Also called"].encode('utf-8').strip() +"; "+
+                    i["Configuration"].encode('utf-8').strip()+"; "+
+                    i["Production"].encode('utf-8').strip() +"; "+
+                    i["Piston stroke, mm (inch)"].encode('utf-8').strip()+"; "+
+                    i["Cylinder bore, mm (inch)"].encode('utf-8').strip()+"; "+
+                    i["Compression ratio"].encode('utf-8').strip() + "; "+
+                    i["Displacement"].encode('utf-8').strip() + "; "+
+                    i["Power output"].encode('utf-8').strip() + "; "+
+                    i["Torque output"].encode('utf-8').strip() + "; "+
+                    i["Redline"].encode('utf-8').strip() +
                     "\r\n")
 
 def main():
     get_urls()
     get_data()
-    print_data()
+    #print_data()
 
 
 if __name__ == "__main__":
