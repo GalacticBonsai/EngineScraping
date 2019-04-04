@@ -23,7 +23,7 @@ def get_urls():
 
 
 def get_data():
-    for url in urls:
+    for url in set(urls):
         uClient = requests.get(url.rstrip())
         page_html = uClient.text
 #        print(uClient)        
@@ -78,4 +78,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    print_data()
+
 
