@@ -1,0 +1,14 @@
+{
+    "python.pythonPath": "C:\\Users\\Halla\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+    "pip-updater.AutoUpdate": true,
+    "pip-updater.PackagesAndVersions":   [
+    {
+        "packageName": "beautifulsoup4",
+        "version": "latest"
+    },
+    {
+        "packageName": "requests",
+        "version": "latest"
+    }],
+    "files.autoSave": "afterDelay"
+}
